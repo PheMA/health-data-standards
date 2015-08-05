@@ -1,9 +1,16 @@
+<%- if details[:coded_entry_method] == :ordinality -%>
+          <priorityCode>
+            <%- if value.code_list_id -%>
+            <item valueSet="<%= value.code_list_id %>" />
+            <%- end -%>
+          </priorityCode>
+<%- else -%>
           <outboundRelationship typeCode="SUBJ">
 <%- if details[:code] == 'SDLOC' -%>
             <encounterCriteria classCode="ENC" moodCode="EVN">
               <%- if details[:templateId] -%>
               <templateId>
-                <item root="<%= details[:template_id] %>"/>
+                <item root="<%= details[:template_id] %>" extension="2014-11-24"/>
               </templateId> 
               <%- end -%>
               <participation typeCode="LOC">
@@ -16,7 +23,7 @@
             <observationCriteria classCode="OBS" moodCode="EVN">
               <%- if details[:templateId] -%>
               <templateId>
-                <item root="<%= details[:template_id] %>"/>
+                <item root="<%= details[:template_id] %>" extension="2014-11-24"/>
               </templateId> 
               <%- end -%>
               
@@ -30,6 +37,7 @@
                 </role>
               </participation>
               <%- else -%>
+              <title value="<%= details[:title] %>" />
               <code code="<%= details[:code] %>" codeSystem="<%= details[:code_system] %>" codeSystemName="<%= details[:code_system_name] %>">
                 <displayName value="<%=ERB::Util::h details[:title] %>"/> 
               </code>
@@ -38,3 +46,4 @@
             </observationCriteria>
 <%- end -%>
           </outboundRelationship>
+<%- end -%>

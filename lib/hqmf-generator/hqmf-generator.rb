@@ -281,7 +281,7 @@ module HQMF2
       def data_criteria_template_name(data_criteria)
         case data_criteria.definition
         when 'diagnosis', 'diagnosis_family_history'
-          'condition_criteria'
+          'observation_criteria'
         when 'encounter' 
           'encounter_criteria'
         when 'procedure', 'risk_category_assessment', 'physical_exam', 'communication_from_patient_to_provider', 'communication_from_provider_to_provider', 'device', 'diagnostic_study', 'intervention'
