@@ -6,6 +6,7 @@ module HQMF
 
     SOURCE_DATA_CRITERIA_TEMPLATE_ID = '2.16.840.1.113883.3.100.1.1'
     SOURCE_DATA_CRITERIA_TEMPLATE_TITLE = 'Source data criteria'
+    SOURCE_DATA_CRITERIA_TEMPLATE_EXTENSION = '2014-11-24'
     
     XPRODUCT = 'XPRODUCT'
     UNION = 'UNION'
@@ -15,7 +16,7 @@ module HQMF
     SATISFIES_ANY = 'satisfies_any'
     VARIABLE = 'variable'
 
-    FIELDS = {'SEVERITY' => {title:'Severity', coded_entry_method: :severity, code: 'SEV', code_system:'2.16.840.1.113883.5.4', template_id: '2.16.840.1.113883.3.560.1.1021.2', field_type: :value},
+    FIELDS = {'SEVERITY' => {title:'Severity', coded_entry_method: :severity, code: 'SEV', code_system:'2.16.840.1.113883.5.4', template_id: '2.16.840.1.113883.10.20.28.3.93', field_type: :value},
              'ORDINAL' => {title:'Ordinal', coded_entry_method: :ordinality, code: '117363000', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.3.560.1.1012.2', field_type: :value},
              'REASON' => {title:'Reason', coded_entry_method: :reason, code: '410666004', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.3.560.1.1017.2', field_type: :value},
              'SOURCE' => {title:'Source', coded_entry_method: :source, code: '260753009', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.3.560.1.2001.2', field_type: :value},
@@ -311,6 +312,20 @@ module HQMF
           settings['title']
         else
           'Unknown data criteria'
+        end
+      else
+        'Unknown template id'
+      end
+    end
+
+    def self.extension_for_template_id(template_id)
+      value = get_template_id_map()[template_id]
+      if value
+        extension = value['extension']
+        if extension
+          extension
+        else
+          '2014-11-24'   # Default for HQMF r2.1
         end
       else
         'Unknown template id'

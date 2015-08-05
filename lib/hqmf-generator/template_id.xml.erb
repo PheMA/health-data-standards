@@ -1,5 +1,5 @@
           <templateId>
             <%- templates.each do |template| -%>
-            <item root="<%= template[:id] %>" identifierName="<%= template[:title] %> template"/>
+            <item root="<%= template[:id] %>" extension="<%= template[:extension] %>"/>
             <%- end -%>
           </templateId>

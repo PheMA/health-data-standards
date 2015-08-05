@@ -122,13 +122,13 @@ module HQMF2
         # Add a template ID if one is defined for this data criteria
         template_id = HQMF::DataCriteria.template_id_for_definition(data_criteria.definition, data_criteria.status, data_criteria.negation)
         if template_id
-          templates << {:id => template_id, :title => HQMF::DataCriteria.title_for_template_id(template_id)}
+          templates << {:id => template_id, :extension => HQMF::DataCriteria.extension_for_template_id(template_id)}
         end
         # Add our own template id if this is a source data criteria from HQMF V1. Source
         # data criteria are the 'raw' HQMF V1 data criteria before any restrictions are applied
         # they are only used for negating specific occurrences
         if is_source_data_criteria
-          templates << {:id => HQMF::DataCriteria::SOURCE_DATA_CRITERIA_TEMPLATE_ID, :title => HQMF::DataCriteria::SOURCE_DATA_CRITERIA_TEMPLATE_TITLE}
+          templates << {:id => HQMF::DataCriteria::SOURCE_DATA_CRITERIA_TEMPLATE_ID, :extension => HQMF::DataCriteria::SOURCE_DATA_CRITERIA_TEMPLATE_EXTENSION}
         end
         if templates.length > 0
           xml = HQMF2::Generator.render_template('template_id', {'templates' => templates})
