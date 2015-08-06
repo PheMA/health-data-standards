@@ -5,10 +5,10 @@
             <%- end -%>
           </priorityCode>
 <%- else -%>
-          <outboundRelationship typeCode="SUBJ">
+          <outboundRelationship typeCode="<%= details[:type_code].nil? ? 'SUBJ' : details[:type_code] %>">
 <%- if details[:code] == 'SDLOC' -%>
             <encounterCriteria classCode="ENC" moodCode="EVN">
-              <%- if details[:templateId] -%>
+              <%- if details[:template_id] -%>
               <templateId>
                 <item root="<%= details[:template_id] %>" extension="2014-11-24"/>
               </templateId> 
@@ -21,7 +21,7 @@
             </encounterCriteria>
 <%- else -%>
             <observationCriteria classCode="OBS" moodCode="EVN">
-              <%- if details[:templateId] -%>
+              <%- if details[:template_id] -%>
               <templateId>
                 <item root="<%= details[:template_id] %>" extension="2014-11-24"/>
               </templateId> 

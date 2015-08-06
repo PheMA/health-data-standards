@@ -16,11 +16,11 @@ module HQMF
     SATISFIES_ANY = 'satisfies_any'
     VARIABLE = 'variable'
 
-    FIELDS = {'SEVERITY' => {title:'Severity', coded_entry_method: :severity, code: 'SEV', code_system:'2.16.840.1.113883.5.4', template_id: '2.16.840.1.113883.10.20.28.3.93', field_type: :value},
+    FIELDS = {'SEVERITY' => {title:'Severity', coded_entry_method: :severity, code: 'SEV', code_system:'2.16.840.1.113883.5.4', template_id: '2.16.840.1.113883.10.20.28.3.93', field_type: :value, type_code: 'REFR'},
              'ORDINAL' => {title:'Ordinal', coded_entry_method: :ordinality, code: '117363000', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.3.560.1.1012.2', field_type: :value},
-             'REASON' => {title:'Reason', coded_entry_method: :reason, code: '410666004', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.3.560.1.1017.2', field_type: :value},
-             'SOURCE' => {title:'Source', coded_entry_method: :source, code: '260753009', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.3.560.1.2001.2', field_type: :value},
-             'CUMULATIVE_MEDICATION_DURATION' => {title:'Cumulative Medication Duration', coded_entry_method: :cumulative_medication_duration, code: '363819003', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.3.560.1.1001.3', field_type: :value},
+             'REASON' => {title:'Reason', coded_entry_method: :reason, code: '410666004', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.10.20.28.3.88', field_type: :value, type_code: 'RSON'},
+             'SOURCE' => {title:'Source', coded_entry_method: :source, code: '260753009', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.10.20.28.3.104', field_type: :value},
+             'CUMULATIVE_MEDICATION_DURATION' => {title:'Cumulative Medication Duration', coded_entry_method: :cumulative_medication_duration, code: '261773006', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.10.20.28.3.100', field_type: :value},
              'FLFS' => {title:'Fulfills', coded_entry_method: :fulfills, code: 'FLFS', field_type: :reference},
              'FACILITY_LOCATION' => {title:'Facility Location', coded_entry_method: :facility, code: 'SDLOC', field_type: :value},
              'FACILITY_LOCATION_ARRIVAL_DATETIME' => {title:'Facility Location Arrival Date/Time', coded_entry_method: :facility_arrival, code: 'SDLOC_ARRIVAL', field_type: :nested_timestamp},
@@ -32,20 +32,28 @@ module HQMF
              'DOSE' => {title:'Dose', coded_entry_method: :dose, code: '398232005', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.3.560.1.1004.1', field_type: :value},
              'ROUTE' => {title:'Route', coded_entry_method: :route, code: '263513008', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.3.560.1.1020.2', field_type: :value},
              'START_DATETIME' => {title:'Start Date/Time', coded_entry_method: :start_date, code: '398201009', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.3.560.1.1027.1', field_type: :timestamp},
-             'FREQUENCY' => {title:'Frequency', coded_entry_method: :frequency, code: '260864003', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.3.560.1.1006.1', field_type: :value},
+             'FREQUENCY' => {title:'Frequency', coded_entry_method: :frequency, code: '307430002', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.10.20.28.3.99', field_type: :value},
              'ANATOMICAL_STRUCTURE' => {title:'Anatomical Structure', coded_entry_method: :anatomical_structure, code: '91723000', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.3.560.1.1000.2', field_type: :value},
              'STOP_DATETIME' => {title:'Stop Date/Time', coded_entry_method: :end_date, code: '397898000', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.3.560.1.1026.1', field_type: :timestamp},
              'INCISION_DATETIME' => {title:'Incision Date/Time', coded_entry_method: :incision_time, code: '34896006', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.3.560.1.1007.1', field_type: :timestamp},
              'REMOVAL_DATETIME' => {title:'Removal Date/Time', coded_entry_method: :removal_time, code: '118292001', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.3.560.1.1032.1', field_type: :timestamp},
              'TRANSFER_TO' => {title:'Transfer To', coded_entry_method: :transfer_to, code: 'TRANSFER_TO', template_id: '2.16.840.1.113883.3.560.1.72', field_type: :value},
              'TRANSFER_FROM' => {title:'Transfer From', coded_entry_method: :transfer_from, code: 'TRANSFER_FROM', template_id: '2.16.840.1.113883.3.560.1.71', field_type: :value},
+             'PATIENT_PREFERENCE' => {title:'Patient Preference', coded_entry_method: :patient_preference, code: 'PAT', code_system:'2.16.840.1.113883.5.8', template_id: '2.16.840.1.113883.10.20.28.3.86', field_type: :value, type_code: 'RSON'},
+             'PROVIDER_PREFERENCE' => {title:'Provider Preference', coded_entry_method: :provider_preference, code: '103323008', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.10.20.28.3.87', field_type: :value, type_code: 'RSON'},
+             'LATERALITY' => {title:'Laterality', coded_entry_method: :laterality, code: '272741003', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.10.20.28.3.98', field_type: :value, type_code: 'REFR'},
+             'REACTION' => {title:'Reaction', coded_entry_method: :reaction, code: '263851003', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.10.20.28.3.91', field_type: :value, type_code: 'MFST'},
+             'RADIATION_DOSAGE' => {title:'Radiation Dosage', coded_entry_method: :radiation_dosage, code: '228815006', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.10.20.28.3.106', field_type: :value, type_code: 'REFR'},
+             'RADIATION_DURATION' => {title:'Radiation Duration', coded_entry_method: :radiation_duration, code: '306751006', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.10.20.28.3.107', field_type: :value, type_code: 'REFR'},
+             'HEALTH_RECORD_FIELD' => {title:'Health Record Field', coded_entry_method: :health_record_field, code: '395676008', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.10.20.28.3.102', field_type: :value},
+             'RESULT' => {title:'Result', coded_entry_method: :result, code: '394617004', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.10.20.28.3.101', field_type: :value, type_code: 'REFR'},
              }
-             
+
     VALUE_FIELDS = {'SEV'      => 'SEVERITY',
                     '117363000' => 'ORDINAL',
                     '410666004' => 'REASON',
                     '260753009' => 'SOURCE',
-                    '363819003' => 'CUMULATIVE_MEDICATION_DURATION',
+                    '261773006' => 'CUMULATIVE_MEDICATION_DURATION',
                     'SDLOC'     => 'FACILITY_LOCATION',
                     '442864001' => 'DISCHARGE_DATETIME',
                     '309039003' => 'DISCHARGE_STATUS',
@@ -54,13 +62,21 @@ module HQMF
                     '398232005' => 'DOSE',
                     '263513008' => 'ROUTE',
                     '398201009' => 'START_DATETIME',
-                    '260864003' =>'FREQUENCY',
+                    '307430002' =>'FREQUENCY',
                     '91723000'  => 'ANATOMICAL_STRUCTURE',
                     '397898000' => 'STOP_DATETIME',
                     '34896006'  => 'INCISION_DATETIME',
                     '118292001' =>'REMOVAL_DATETIME',
                     'SDLOC_ARRIVAL'   => 'FACILITY_LOCATION_ARRIVAL_DATETIME',
-                    'SDLOC_DEPARTURE' => 'FACILITY_LOCATION_DEPARTURE_DATETIME'
+                    'SDLOC_DEPARTURE' => 'FACILITY_LOCATION_DEPARTURE_DATETIME',
+                    'PAT' => 'PATIENT_PREFERENCE',
+                    '103323008' => 'PROVIDER_PREFERENCE',
+                    '272741003' => 'LATERALITY',
+                    '263851003' => 'REACTION',
+                    '228815006' => 'RADIATION_DOSAGE',
+                    '306751006' => 'RADIATION_DURATION',
+                    '395676008' => 'HEALTH_RECORD_FIELD',
+                    '394617004' => 'RESULT'
                    }
     
 
