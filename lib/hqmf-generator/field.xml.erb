@@ -4,29 +4,36 @@
             <item valueSet="<%= value.code_list_id %>" />
             <%- end -%>
           </priorityCode>
+<%- elsif details[:coded_entry_method] == :anatomical_location -%>
+          <targetSiteCode>
+            <%- if value.code_list_id -%>
+            <item valueSet="<%= value.code_list_id %>" />
+            <%- end -%>
+          </targetSiteCode>
+<%- elsif details[:coded_entry_method] == :method -%>
+          <methodCode>
+            <%- if value.code_list_id -%>
+            <item valueSet="<%= value.code_list_id %>" />
+            <%- end -%>
+          </methodCode>
+<%- elsif details[:code] == 'SDLOC' -%>
+          <participation typeCode="LOC">
+            <role classCode="SDLOC">
+              <templateId>
+                <item root="2.16.840.1.113883.10.20.28.3.92" />
+              </templateId>
+              <%= xml_for_value(value, 'code') %>
+            </role>
+          </participation>
 <%- else -%>
           <outboundRelationship typeCode="<%= details[:type_code].nil? ? 'SUBJ' : details[:type_code] %>">
-<%- if details[:code] == 'SDLOC' -%>
-            <encounterCriteria classCode="ENC" moodCode="EVN">
-              <%- if details[:template_id] -%>
-              <templateId>
-                <item root="<%= details[:template_id] %>" extension="2014-11-24"/>
-              </templateId> 
-              <%- end -%>
-              <participation typeCode="LOC">
-                <role classCode="SDLOC">
-                  <%= xml_for_value(value, 'code') %>
-                </role>
-              </participation>
-            </encounterCriteria>
-<%- else -%>
             <observationCriteria classCode="OBS" moodCode="EVN">
               <%- if details[:template_id] -%>
               <templateId>
                 <item root="<%= details[:template_id] %>" extension="2014-11-24"/>
-              </templateId> 
+              </templateId>
               <%- end -%>
-              
+
               <%- if is_transfer(details[:code]) -%>
               <title value="<%= details[:code] %>" />
               <statusCode code="completed" />
@@ -44,6 +51,5 @@
               <%= xml_for_value(value) %>
               <%- end -%>
             </observationCriteria>
-<%- end -%>
           </outboundRelationship>
 <%- end -%>

@@ -11,6 +11,7 @@
           <%- if criteria.value -%>
           <%= xml_for_value(criteria.value) %>
           <%- end -%>
+          <%= xml_for_participation(criteria) %>
           <definition>
             <criteriaReference moodCode="EVN" classCode="OBS">
               <id root="2.16.840.1.113883.3.100.1" extension="<%= section_name(criteria) %>"/>

@@ -165,6 +165,11 @@ module HQMF2
       def xml_for_data_criteria(data_criteria, is_source_data_criteria)
         HQMF2::Generator.render_template(data_criteria_template_name(data_criteria), {'doc' => doc, 'criteria' => data_criteria, 'is_source_data_criteria' => is_source_data_criteria})
       end
+
+      def xml_for_participation(data_criteria)
+        params = HQMF::DataCriteria.parameters_for_participation(data_criteria.definition, data_criteria.status)
+        HQMF2::Generator.render_template('participation', {'doc' => doc, 'criteria' => data_criteria, 'type' => params[:type], 'role_class' => params[:role_class], 'material_tag' => params[:material_tag], 'material_class' => params[:material_class]}) unless params.nil?
+      end
       
       def xml_for_population_criteria(population, criteria_id)
         xml = ''
@@ -290,11 +295,13 @@ module HQMF2
           else
             'observation_criteria'
           end
-        when 'medication'
+        when 'medication_adverse_effects', 'medication_allergy', 'medication_intolerance', 'substance_adverse_event', 'substance_allergy', 'substance_intolerance'
+          'observation_criteria'
+        when 'medication', 'substance'
           case data_criteria.status
-          when 'dispensed', 'ordered'
+          when 'dispensed'
             'supply_criteria'
-          else # active or administered
+          else # active, ordered or administered
             'substance_criteria'
           end
         when 'patient_characteristic', 'patient_characteristic_birthdate', 'patient_characteristic_clinical_trial_participant', 'patient_characteristic_expired', 'patient_characteristic_gender', 'patient_characteristic_age', 'patient_characteristic_languages', 'patient_characteristic_marital_status', 'patient_characteristic_race'

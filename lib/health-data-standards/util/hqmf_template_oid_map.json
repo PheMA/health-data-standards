@@ -227,7 +227,7 @@
       "definition":"medication",
       "status":"discharge",
       "negation":true},
-  "2.16.840.1.113883.3.560.1.13":{
+  "2.16.840.1.113883.10.20.28.3.44":{
       "definition":"medication",
       "status":"active",
       "negation":false},

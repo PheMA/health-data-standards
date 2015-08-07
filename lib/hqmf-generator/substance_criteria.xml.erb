@@ -7,11 +7,7 @@
           <%= "<statusCode code=\"#{criteria.status}\"/>" if criteria.status %>
           <%= xml_for_effective_time(criteria) %>
           <%= xml_for_reason(criteria) %>
-          <participation typeCode="CSM">
-            <role classCode="THER">
-              <%= xml_for_code(criteria, 'code', false) %>
-            </role>
-          </participation>
+          <%= xml_for_participation(criteria) %>
           <definition>
             <criteriaReference moodCode="EVN" classCode="SBADM">
               <id root="2.16.840.1.113883.3.100.1" extension="<%= section_name(criteria) %>"/>

@@ -47,6 +47,8 @@ module HQMF
              'RADIATION_DURATION' => {title:'Radiation Duration', coded_entry_method: :radiation_duration, code: '306751006', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.10.20.28.3.107', field_type: :value, type_code: 'REFR'},
              'HEALTH_RECORD_FIELD' => {title:'Health Record Field', coded_entry_method: :health_record_field, code: '395676008', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.10.20.28.3.102', field_type: :value},
              'RESULT' => {title:'Result', coded_entry_method: :result, code: '394617004', code_system:'2.16.840.1.113883.6.96', template_id: '2.16.840.1.113883.10.20.28.3.101', field_type: :value, type_code: 'REFR'},
+             'ANATOMICAL_LOCATION' => {title:'Anatomical Location', coded_entry_method: :anatomical_location },
+             'METHOD' => {title:'Method', coded_entry_method: :method },
              }
 
     VALUE_FIELDS = {'SEV'      => 'SEVERITY',
@@ -352,7 +354,26 @@ module HQMF
       @@template_id_map ||= read_template_id_map
       @@template_id_map
     end
-    
+
+    def self.parameters_for_participation(definition, status)
+      parameters = nil
+
+      case definition
+      when 'medication_adverse_effects', 'medication_allergy'
+        parameters = {:type => 'CSM', :role_class => 'MANU', :material_tag => 'playingEntity', :material_class => 'MMAT'}
+      when 'medication', 'medication_intolerance'
+        parameters = {:type => 'CSM', :role_class => 'MANU', :material_tag => 'playingMaterial', :material_class => 'MMAT'}
+        if status == 'administered' or status == 'discharged'
+          parameters[:material_tag] = 'playingManufacturedMaterial'
+        end
+      when 'substance', 'substance_adverse_event', 'substance_allergy', 'substance_intolerance'
+        parameters = {:type => 'CSM', :role_class => 'ADMM', :material_tag => 'playingMaterial', :material_class => 'MAT'}
+      end
+
+      parameters
+    end
+
+
     private
     
     def self.read_template_id_map
