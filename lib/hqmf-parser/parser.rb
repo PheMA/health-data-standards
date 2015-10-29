@@ -34,7 +34,8 @@ module HQMF
 
       def self.valid?(xml_contents)
          doc = HQMF2::Document.parse(xml_contents)
-        !doc.at_xpath("/cda:QualityMeasureDocument/cda:typeId[@root='2.16.840.1.113883.1.3' and @extension='POQM_HD000001UV02']").nil?
+        !doc.at_xpath("/cda:QualityMeasureDocument/cda:typeId[@root='2.16.840.1.113883.1.3' and @extension='POQM_HD000001UV02']").nil? ||
+          !doc.at_xpath("/cda:QualityMeasureDocument/cda:typeId[@root='2.16.840.1.113883.1.3' and @extension='POQM_MT000001UV03']").nil?
       end
 
     end
