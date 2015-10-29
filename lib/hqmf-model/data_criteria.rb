@@ -140,6 +140,7 @@ module HQMF
 
       @id = id
       @title = title
+      @display_name = display_name
       @description = description
       @code_list_id = code_list_id
       @negation_code_list_id = negation_code_list_id
