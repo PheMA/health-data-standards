@@ -1,7 +1,6 @@
 <precondition typeCode="PRCN">
   <%- if precondition.conjunction? -%>
   <<%= precondition.conjunction_code_with_negation %>>
-    <id/>
     <%- precondition.preconditions.each do |child| -%>
     <%= xml_for_precondition(child) %>
     <%- end -%>
