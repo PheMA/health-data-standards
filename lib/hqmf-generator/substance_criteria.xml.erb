@@ -8,8 +8,10 @@
           <%= xml_for_effective_time(criteria) %>
           <%= xml_for_reason(criteria) %>
           <participation typeCode="CSM">
-            <role classCode="THER">
-              <%= xml_for_code(criteria, 'code', false) %>
+            <role classCode="MANU">
+                <playingMaterial classCode="MMAT" determinerCode="KIND">
+                  <%= xml_for_code(criteria, 'code', false) %>
+                </playingMaterial>
             </role>
           </participation>
           <definition>
