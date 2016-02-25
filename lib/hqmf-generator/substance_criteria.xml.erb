@@ -9,9 +9,9 @@
           <%= xml_for_reason(criteria) %>
           <participation typeCode="CSM">
             <role classCode="MANU">
-                <playingMaterial classCode="MMAT" determinerCode="KIND">
+                <<%= element_name_for_substance_administration(criteria) %> classCode="MMAT" determinerCode="KIND">
                   <%= xml_for_code(criteria, 'code', false) %>
-                </playingMaterial>
+                </<%= element_name_for_substance_administration(criteria) %>>
             </role>
           </participation>
           <definition>
