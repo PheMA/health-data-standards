@@ -162,7 +162,7 @@ namespace :bundle do
     begin
 
       ({'one'=>args.bundle_one,'two'=>args.bundle_two}).each do |key, source|
-        Zip::ZipFile.open(source) do |zip_file|
+        Zip::File.open(source) do |zip_file|
           zip_file.each do |f|
             f_path=File.join(tmpdir, key, f.name)
             FileUtils.mkdir_p(File.dirname(f_path))
@@ -212,7 +212,7 @@ namespace :bundle do
 
       out_zip = File.join('tmp','bundles',"bundle-merged-#{date_string}-#{version}.zip")
       FileUtils.remove_entry_secure out_zip if File.exists?(out_zip)
-      Zip::ZipFile.open(out_zip, 'w') do |zipfile|
+      Zip::File.open(out_zip, 'w') do |zipfile|
         path = File.join(tmpdir,'output')
         Dir[File.join(path,'**','**')].each do |file|
           zipfile.add(file.sub(path+'/',''),file)

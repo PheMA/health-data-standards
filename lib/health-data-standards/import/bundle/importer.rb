@@ -1,4 +1,4 @@
-require 'zip/zipfilesystem'
+require 'zip'
 module HealthDataStandards
   module Import
     module Bundle
@@ -27,7 +27,7 @@ module HealthDataStandards
           options = DEFAULTS.merge(options)
 
           bundle = nil
-          Zip::ZipFile.open(zip.path) do |zip_file|
+          Zip::File.open(zip.path) do |zip_file|
 
             bundle = unpack_bundle(zip_file)
 

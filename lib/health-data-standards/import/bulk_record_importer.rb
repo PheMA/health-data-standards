@@ -17,7 +17,7 @@ module HealthDataStandards
 
         patient_id_list = nil
 
-        Zip::ZipFile.open(file.path) do |zipfile|
+        Zip::Zip.open(file.path) do |zipfile|
           zipfile.entries.each do |entry|
             if entry.name
               if entry.name.split("/").last == "patient_manifest.txt"
