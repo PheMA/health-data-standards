@@ -1,6 +1,5 @@
 require 'fileutils'
 require 'digest'
-require 'simplexml_parser'
 require_relative '../../../test_helper'
 
 # Compares the model generated for HQMF 2.1 to the SimpleXML generated model
