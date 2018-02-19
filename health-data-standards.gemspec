@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors = ["Andy Gregorowicz", "Sam Sayer", "Marc Hadley", "Rob Dingwell", "Andre Quina"]
   s.license = 'APL 2.0'
 
-  s.version = '3.6.1'
+  s.version = '3.6.2'
 
   s.add_dependency 'rest-client', '~>1.8.0'
   s.add_dependency 'erubis', '~> 2.7.0'
@@ -19,10 +19,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'protected_attributes', '~> 1.0.5'
   s.add_dependency 'uuid', '~> 2.3.7'
   s.add_dependency 'builder', '~> 3.1'
-  s.add_dependency 'nokogiri', '~> 1.6.8'
+  s.add_dependency 'nokogiri', '~> 1.8.1'
   s.add_dependency 'highline', "~> 1.7.0"
 
-  s.add_dependency 'rubyzip', '0.9.9'
+  s.add_dependency 'rubyzip', '1.2.1'
 
   s.add_dependency 'log4r', '~> 1.1.10'
   s.add_dependency 'memoist', '~> 0.9.1'
