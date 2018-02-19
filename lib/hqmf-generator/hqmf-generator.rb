@@ -402,6 +402,18 @@ module HQMF2
           raise "Unknown population criteria type #{population_criteria_code}"
         end
       end
+
+      def element_name_for_substance_administration(data_criteria)
+        case data_criteria.definition
+        when 'medication'
+          case data_criteria.status
+          when 'administered', 'discharge'
+            return "playingManufacturedMaterial"
+          end
+        end
+
+        "playingMaterial"
+      end
     end
 
   end
